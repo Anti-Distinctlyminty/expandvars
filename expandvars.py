@@ -8,7 +8,7 @@ __author__ = "Arijit Basu"
 __email__ = "sayanarijit@gmail.com"
 __homepage__ = "https://github.com/sayanarijit/expandvars"
 __description__ = "Expand system variables Unix style"
-__version__ = "v0.6.5"  # Also update pyproject.toml
+__version__ = "v0.7.0"  # Also update pyproject.toml
 __license__ = "MIT"
 __all__ = [
     "BadSubstitution",
@@ -392,7 +392,7 @@ def expand_default(var, vars_, set_, nounset, indirect, environ, var_symbol):
     for c in vars_:
         if c == "}":
             n = len(default) + 1
-            default_ = "".join(default)
+            default_ = expand("".join(default))
             if set_ and var not in environ:
                 environ.update({var: default_})
             return getenv(
